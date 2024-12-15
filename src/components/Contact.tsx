@@ -1,12 +1,11 @@
 import { motion } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Text3D } from '@react-three/drei';
 import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
 
 export default function Contact() {
   return (
     <section className="min-h-screen bg-black text-white py-20">
       <div className="container mx-auto px-4">
+        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -20,7 +19,9 @@ export default function Contact() {
           </p>
         </motion.div>
 
+        {/* Contact Info and Form */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* Contact Info Section */}
           <motion.div
             initial={{ x: -50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -51,6 +52,7 @@ export default function Contact() {
                   href="https://github.com"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="GitHub"
                   className="bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors"
                 >
                   <Github className="w-6 h-6" />
@@ -59,6 +61,7 @@ export default function Contact() {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="LinkedIn"
                   className="bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors"
                 >
                   <Linkedin className="w-6 h-6" />
@@ -67,12 +70,16 @@ export default function Contact() {
             </div>
           </motion.div>
 
+          {/* Contact Form Section */}
           <motion.form
             initial={{ x: 50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
             className="space-y-6"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert('Message sent!');
+            }}
           >
             <div>
               <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -81,6 +88,8 @@ export default function Contact() {
               <input
                 type="text"
                 id="name"
+                name="name"
+                required
                 className="w-full px-4 py-2 bg-white/5 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -91,6 +100,8 @@ export default function Contact() {
               <input
                 type="email"
                 id="email"
+                name="email"
+                required
                 className="w-full px-4 py-2 bg-white/5 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -100,7 +111,9 @@ export default function Contact() {
               </label>
               <textarea
                 id="message"
+                name="message"
                 rows={4}
+                required
                 className="w-full px-4 py-2 bg-white/5 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               ></textarea>
             </div>
