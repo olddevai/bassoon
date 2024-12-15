@@ -6,7 +6,7 @@ function SkillSphere({ position, skill }: { position: [number, number, number]; 
   return (
     <group position={position}>
       <Text3D
-        font="/fonts/helvetiker_regular.typeface.json"
+        font="/helvetiker_regular.typeface.json"
         size={0.5}
         height={0.2}
         curveSegments={12}
