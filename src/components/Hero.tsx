@@ -5,11 +5,11 @@ import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail } from 'lucide-react';
 
 function Scene() {
-  const computer = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/macbook/model.gltf');
-  
+  const { scene } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/macbook/model.gltf');
+
   return (
-    <primitive 
-      object={computer.scene} 
+    <primitive
+      object={scene}
       scale={[0.7, 0.7, 0.7]}
       position={[0, -1, 0]}
       rotation={[0, Math.PI / 4, 0]}
@@ -22,6 +22,7 @@ export default function Hero() {
 
   return (
     <div ref={containerRef} className="h-screen w-full relative">
+      {/* 3D Scene */}
       <div className="absolute inset-0">
         <Canvas>
           <PerspectiveCamera makeDefault position={[0, 0, 5]} />
@@ -31,9 +32,10 @@ export default function Hero() {
           <OrbitControls enableZoom={false} />
         </Canvas>
       </div>
-      
+
+      {/* Overlay Content */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -41,16 +43,19 @@ export default function Hero() {
         >
           <h1 className="text-6xl font-bold mb-4">John Doe</h1>
           <p className="text-xl mb-8">Full Stack Developer & 3D Enthusiast</p>
-          
+
           <div className="flex gap-4 justify-center">
             <motion.a
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               href="#contact"
               className="bg-white text-black px-6 py-3 rounded-full font-semibold"
+              aria-label="Contact Me"
             >
               Contact Me
             </motion.a>
+
+            {/* Social Media Links */}
             <div className="flex gap-4">
               <motion.a
                 whileHover={{ scale: 1.1 }}
@@ -59,9 +64,11 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white/10 p-3 rounded-full backdrop-blur-sm"
+                aria-label="Github Profile"
               >
                 <Github className="w-6 h-6 text-white" />
               </motion.a>
+
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -69,14 +76,17 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white/10 p-3 rounded-full backdrop-blur-sm"
+                aria-label="LinkedIn Profile"
               >
                 <Linkedin className="w-6 h-6 text-white" />
               </motion.a>
+
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 href="mailto:contact@example.com"
                 className="bg-white/10 p-3 rounded-full backdrop-blur-sm"
+                aria-label="Email John Doe"
               >
                 <Mail className="w-6 h-6 text-white" />
               </motion.a>
